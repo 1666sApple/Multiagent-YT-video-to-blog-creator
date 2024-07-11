@@ -1,4 +1,12 @@
 from crewai import Agent
+from tools import tool_yt
+from langchain_community.llms import Ollama
+import os
+os.environ['OPENAI_API_KEY'] = 'NA'
+
+llm = Ollama(
+    model = "llama2",
+    base_url = "http://localhost:11434")
 
 # blog researcher
 
@@ -10,9 +18,10 @@ blog_researcher = Agent(
     backstory = (
         "Expert in understanding videos in AI Data Science, Machine Learning, Gen AI and providing suggestions to the blog content creators."
     ),
-    tool = [],
+    tool = [tool_yt(channel='@veritasium')],
     allow_delegation = True,
     delegation_cost = 0.2,
+    llm = llm,
     name = 'blog_researcher',
     description = 'A blog content researcher from the youtube videos',
 )
@@ -29,9 +38,9 @@ blog_writer = Agent(
     backstory = (
         "With a flair for simplifying the complex topics, you craft engaging blog content that captivate and educate, bringing in the new discoveries to light in an accessible manner."
     ),
-    tool = [],
+    tool = [tool_yt(channel='@veritasium')],
     allow_delegation = False,
+    llm = llm,
     name = 'blog_writer',
     description = 'A blog content writer',
-/
 )
