@@ -11,7 +11,7 @@ This project uses CrewAI to create a multiagent system that generates blog conte
 
 ## Prerequisites
 
-- Python 3.x
+- Python 3.12.3(anything above 3.10 should work)
 - Ollama running locally
 - Required Python packages (see `requirements.txt`)
 
